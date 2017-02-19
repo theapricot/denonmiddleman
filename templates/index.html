@@ -1,0 +1,57 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.2/css/bootstrap-slider.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.2/bootstrap-slider.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<div class="container">
+    <form id="mainform" method=post>
+        <h2>DENON</h2>
+        <div class="row" style="margin-top:20px">
+            <div class="col-sm-2">
+                <h4>POWER:</h4>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button name="POWER" value=1 class="btn btn-{% if not power %}outline-{% endif %}success">ON</button>
+                <button name="POWER" value=0 class="btn btn-{% if power %}outline-{% endif %}danger">OFF</button>
+            </div>
+        </div>
+    
+        <div class="row" style="margin-top:20px">
+            <div class="col-sm-2">
+                <h4>INPUT:</h4>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button name="INPUT" value="TV" id="input-TV" class="btn btn-secondary">TV</button>
+                <button name="INPUT" value="BD" id="input-BD" class="btn btn-secondary">PS4</button>
+                <button name="INPUT" value="V.AUX" id="input-V.AUX" class="btn btn-secondary">Laptop</button>
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px">
+            <div class="col-sm-2">
+                <h4>VOLUME:</h4>
+            </div>
+            <input
+                type="text"
+                id="volume"
+                data-provide="slider"
+                data-slider-ticks="[1,100]"
+                data-slider-min="1"
+                data-slider-max="100"
+                data-slider-step="1"
+                data-slider-value={{ vol }}
+                data-slider-tooltip="hide"
+            >
+        </div>
+    </form>
+</div>
+
+<script>
+    $("#input-{{ inp }}").attr("class","btn btn-primary");
+    $("#volume").on("slideStop", function(evt) { $("#volume").attr("name","VOL"); $("#mainform").submit() });
+    //var mySlider = $("#volume").slider();
+</script>
