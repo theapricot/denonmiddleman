@@ -17,4 +17,4 @@ def index():
     
 if __name__ == "__main__":
     #app.run(debug=True, host="0.0.0.0")
-    WSGIServer(('', 5000), app).serve_forever()
+    WSGIServer(('0.0.0.0', 5000), app).serve_forever()
